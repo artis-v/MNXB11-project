@@ -6,6 +6,20 @@ To extract the files, run
 tar zxvf datasets.tgz
 ```
 
+To use the cleaner you might first need to run
+```console
+chmod +x data_cleaner.sh
+```
+
+To clean the data run
+```console
+./data_cleaner.sh <data1.csv> <data2.csv> ...
+```
+
+The "Boras_Data_Cleaned.csv" is the cleaned smhi data from the Borås station.
+
+
+
 The meteorological data used in this project has been downloaded from 
 the official "SMHI - Sveriges meteorologiska och hydrologiska institut"
 website, <https://www.smhi.se>
