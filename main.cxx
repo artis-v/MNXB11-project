@@ -1,15 +1,22 @@
-
 #include <iostream>
-int main(int argc, char *argv[]) {
-  std::cout << "I am just a code template, you need to implement the "
-               "functionality you want to use yourself!"
-            << std::endl;
+#include <AnnualData.h>
 
-  std::cout << "We were passed " << argc
-            << " command line arguments, the first of which was " << argv[0]
-            << std::endl;
-  std::cout << "With a good CLI library, we could use the command line "
-               "arguments to make a useful program."
-            << std::endl;
-  return 0;
+using std::cout, std::endl;
+
+int main() { // int argc, char *argv[]
+    AnnualData ad("datasets/Boras_Data_Cleaned.csv", "18:00:00");
+    // Some examples:
+    for (auto el : ad.years()) {
+        cout << el << " ";
+    }
+    cout << endl;
+    for (auto el : ad.count(16.6, 18.1)) {
+        cout << el << " ";
+    }
+    cout << endl;
+    for (auto el : ad.range(16.6, 18.1)) {
+        cout << el << " ";
+    }
+    cout << endl;
+    // ad.amplitude(float width) is TODO
 }
