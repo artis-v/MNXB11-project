@@ -4,12 +4,11 @@
 #include <fstream>
 #include <iostream>
 #include <map>
-#include <numeric>
 #include <sstream>
 #include <vector>
 
 using std::string, std::pair, std::vector, std::ifstream, std::stringstream,
-    std::max, std::iota;
+    std::max, std::deque;
 
 AnnualData::AnnualData(string address, string time) {
     // open file and read it line by line
@@ -68,7 +67,27 @@ vector<int> AnnualData::range(float low, float high) {
 vector<int> AnnualData::amplitude(float width) {
     vector<int> result;
     for (int year : yrs) {
-        result.push_back(year - static_cast<int>(width));
+        result.push_back(0);
+        deque<int> low, high;
+        int start = 0;
+        for (int end = 0; end < static_cast<int>(data[year].size()); end++) {
+            // high stores indices of maximums
+            while (!high.empty() && data[year][high.back()] <= data[year][end])
+                high.pop_back();
+            high.push_back(end);
+            // low stores indices of minimums
+            while (!low.empty() && data[year][low.back()] >= data[year][end])
+                low.pop_back();
+            low.push_back(end);
+            // move start if amplitude is too large
+            while (data[year][high.front()] - data[year][low.front()] > width) {
+                start++;
+                if (high.front() < start) high.pop_front();
+                if (low.front() < start) low.pop_front();
+            }
+            // update length
+            result.back() = max(result.back(), end - start + 1);
+        }
     }
     return result;
 }

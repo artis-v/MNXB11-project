@@ -4,9 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <map>
-#include <set>
 
-using std::string, std::vector, std::pair, std::map, std::set;
+using std::string, std::vector, std::pair, std::map;
 
 class AnnualData {
    public:

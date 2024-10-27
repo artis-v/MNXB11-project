@@ -18,5 +18,8 @@ int main() { // int argc, char *argv[]
         cout << el << " ";
     }
     cout << endl;
-    // ad.amplitude(float width) is TODO
+    for (auto el : ad.amplitude(1.5)) {
+        cout << el << " ";
+    }
+    cout << endl;
 }
