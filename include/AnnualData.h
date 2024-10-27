@@ -3,8 +3,10 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
+#include <set>
 
-using std::string, std::vector, std::pair;
+using std::string, std::vector, std::pair, std::map, std::set;
 
 class AnnualData {
    public:
@@ -15,8 +17,8 @@ class AnnualData {
     vector<int> amplitude(float width);
 
    private:
-    int firstYear, lastYear;
-    vector<pair<int, float>> data;
+    vector<int> yrs;
+    map<int, vector<float>> data;
 };
 
 #endif
