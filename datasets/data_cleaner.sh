@@ -30,8 +30,11 @@ clean_data() {
     STARTLINE=$((STARTLINE + 1))
 
     # Extract data starting from the line after 'Datum' and save to cleaned file
+    tail -n +$STARTLINE "$INPUT_FILE" | \
+    # Filter data to only include years before 2023
+    awk -F';' '$1 ~ /^[0-9]{4}/ && substr($1, 1, 4) < 2023' | \
     # To include "Kvalitet", if needed, change the "cut" part to inlcude 1,2,3,4
-    tail -n +$STARTLINE "$INPUT_FILE" | cut -d';' -f 1,2,3 | sed 's/;/,/g' > "$CLEANED_FILE"
+    cut -d';' -f 1,2,3 | sed 's/;/,/g' > "$CLEANED_FILE"
     
     # Check if data was successfully cleaned
     if [[ $? -ne 0 ]]; then
