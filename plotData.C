@@ -1,12 +1,13 @@
-#include <TSystem.h>
-#include <TString.h>
-#include <TGraph.h>
-#include <TCanvas.h>
 #include <TAxis.h>
+#include <TCanvas.h>
+#include <TGraph.h>
+#include <TString.h>
+#include <TSystem.h>
+#include <include/AnnualData.h>
+
 #include <iostream>
 #include <sstream>
 #include <vector>
-#include <include/AnnualData.h>
 
 // Make sure the c++ code is compiled and has the executable called "main"
 // Else change the path below
@@ -19,11 +20,13 @@ void plotData() {
     AnnualData ad("datasets/Boras_Data_Cleaned.csv", "18:00:00");
     std::vector<Int_t> years = ad.years();
     std::vector<Int_t> counts = ad.count(16.6, 18.1);
-    std::vector<Int_t> ranges = ad.count(16.6, 18.1);
-    std::vector<Int_t> amplitudes = ad.count(16.6, 18.1);
-    
-    // Check that the years vector has the same size as counts, ranges, and amplitudes
-    if (years.size() != counts.size() || years.size() != ranges.size() || years.size() != amplitudes.size()) {
+    std::vector<Int_t> ranges = ad.range(16.6, 18.1);
+    std::vector<Int_t> amplitudes = ad.amplitude(1.5);
+
+    // Check that the years vector has the same size as counts, ranges, and
+    // amplitudes
+    if (years.size() != counts.size() || years.size() != ranges.size() ||
+        years.size() != amplitudes.size()) {
         std::cerr << "Error: Data vectors have mismatched sizes!" << std::endl;
         return;
     }
