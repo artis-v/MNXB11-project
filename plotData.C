@@ -6,38 +6,22 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <include/AnnualData.h>
 
 // Make sure the c++ code is compiled and has the executable called "main"
 // Else change the path below
 
 void plotData() {
-    // Run the main executable and capture its output
-    TString cmd = "./main";  // Path to the compiled executable
-    TString output = gSystem->GetFromPipe(cmd);  // Capture the output of the executable
+    // Load shared object
+    gSystem->Load("AnnualData.so");
 
-    // Split the output by lines and process each line
-    std::istringstream stream(output.Data());
-    std::string line;
-    std::vector<Double_t> years, counts, ranges, amplitudes;
-    int lineNum = 0;
-
-    // Parse each line into separate vectors
-    while (std::getline(stream, line)) {
-        std::istringstream lineStream(line);
-        Double_t value;
-        
-        if (lineNum == 0) {
-            while (lineStream >> value) years.push_back(value);
-        } else if (lineNum == 1) {
-            while (lineStream >> value) counts.push_back(value);
-        } else if (lineNum == 2) {
-            while (lineStream >> value) ranges.push_back(value);
-        } else if (lineNum == 3) {
-            while (lineStream >> value) amplitudes.push_back(value);
-        }
-        lineNum++;
-    }
-
+    // Get vectors using the class directly
+    AnnualData ad("datasets/Boras_Data_Cleaned.csv", "18:00:00");
+    std::vector<Int_t> years = ad.years();
+    std::vector<Int_t> counts = ad.count(16.6, 18.1);
+    std::vector<Int_t> ranges = ad.count(16.6, 18.1);
+    std::vector<Int_t> amplitudes = ad.count(16.6, 18.1);
+    
     // Check that the years vector has the same size as counts, ranges, and amplitudes
     if (years.size() != counts.size() || years.size() != ranges.size() || years.size() != amplitudes.size()) {
         std::cerr << "Error: Data vectors have mismatched sizes!" << std::endl;
