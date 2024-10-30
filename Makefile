@@ -11,18 +11,18 @@ LDFLAGS :=
 all: AnnualData.so run
 
 run: AnnualData.so
-	root -l plotData.C
+	root -l newHistData.C -q
 
-AnnualData.so: src/AnnualData.o plotData.o
+AnnualData.so: src/AnnualData.o newHistData.o
 	$(CXX) $(CXXFLAGS) -shared -o $@ $^ $(LDFLAGS)
 
 src/AnnualData.o: src/AnnualData.cxx
 	$(CXX) $(CXXFLAGS) $^ -c -o $@
 
-plotData.o: plotData.C
+newHistData.o: newHistData.C
 	$(CXX) $(CXXFLAGS) $^ -c -o $@
 
 clean:
-	rm -v src/AnnualData.o plotData.o AnnualData.so
+	rm -v src/AnnualData.o newHistData.o AnnualData.so
 
 	

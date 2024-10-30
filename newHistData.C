@@ -1,6 +1,9 @@
 #include <TAxis.h>
 #include <TCanvas.h>
+#include <TF1.h>
 #include <TGraph.h>
+#include <TH1F.h>
+#include <TLatex.h>
 #include <TString.h>
 #include <TSystem.h>
 #include <include/AnnualData.h>
@@ -9,7 +12,6 @@
 #include <sstream>
 #include <vector>
 void newHistData() {
-
     // Load shared object
     gSystem->Load("AnnualData.so");
 
@@ -20,12 +22,9 @@ void newHistData() {
     std::vector<Int_t> ranges = ad.range(16.6, 18.1);
     std::vector<Int_t> amplitudes = ad.amplitude(1.5);
 
-
-
-
-
     // Check that all data vectors are the same size
-    if (years.size() != counts.size() || years.size() != ranges.size() || years.size() != amplitudes.size()) {
+    if (years.size() != counts.size() || years.size() != ranges.size() ||
+        years.size() != amplitudes.size()) {
         std::cerr << "Error: Data vectors have mismatched sizes!" << std::endl;
         return;
     }
@@ -37,10 +36,9 @@ void newHistData() {
 
     // Create a canvas for the histograms
     TCanvas *c1 = new TCanvas("c1", "Yearly Data Histograms", 1200, 900);
-    //c1->Divide(2, 2);
+    // c1->Divide(2, 2);
 
-  
-    auto calcMeanStdDev = [](const std::vector<Int_t> &values){
+    auto calcMeanStdDev = [](const std::vector<Int_t> &values) {
         Double_t sum = 0.0, sumSq = 0.0;
         for (auto val : values) {
             sum += val;
@@ -53,25 +51,27 @@ void newHistData() {
 
     // Counts histogram
     c1->cd();
-    TH1F *hCounts = new TH1F("hCounts", "Counts over Years;Year;Counts", nBins, years.front() - 0.5, years.back() + 0.5);
+    TH1F *hCounts = new TH1F("hCounts", "Counts over Years;Year;Counts", nBins,
+                             years.front() - 0.5, years.back() + 0.5);
     for (size_t i = 0; i < years.size(); i++) {
         Int_t bin = hCounts->FindBin(years[i]);
         hCounts->SetBinContent(bin, counts[i]);
     }
-    hCounts->SetFillColor(kGreen-9);
+    hCounts->SetFillColor(kGreen - 9);
     hCounts->Draw();
 
     TF1 *qFit = new TF1("qFit", "pol3", years.front(), years.back());
     hCounts->Fit(qFit, "R");
     qFit->SetLineColor(kRed);
     qFit->Draw("same");
-/*
-    Double_t chi2_counts = qFit->GetChisquare();
-    Int_t ndf_counts = qFit->GetNDF();
-    TLatex latex;
-    latex.SetTextSize(0.03);
-    latex.DrawLatexNDC(0.75, 0.65, Form("#frac{#chi^{2}}{ndf} = %.3f", chi2_counts / ndf_counts));
-*/
+    /*
+        Double_t chi2_counts = qFit->GetChisquare();
+        Int_t ndf_counts = qFit->GetNDF();
+        TLatex latex;
+        latex.SetTextSize(0.03);
+        latex.DrawLatexNDC(0.75, 0.65, Form("#frac{#chi^{2}}{ndf} = %.3f",
+       chi2_counts / ndf_counts));
+    */
 
     auto [meanCounts, stdDevCounts] = calcMeanStdDev(counts);
     TLatex stats1;
@@ -87,12 +87,13 @@ void newHistData() {
     TCanvas *c2 = new TCanvas("c2", "Yearly Data Histograms", 1200, 900);
     c2->cd();
 
-    TH1F *hRanges = new TH1F("hRanges", "Ranges over Years;Year;Ranges", nBins, yearMin - 0.5, yearMax + 0.5);
+    TH1F *hRanges = new TH1F("hRanges", "Ranges over Years;Year;Ranges", nBins,
+                             yearMin - 0.5, yearMax + 0.5);
     for (size_t i = 0; i < years.size(); i++) {
         Int_t bin = hRanges->FindBin(years[i]);
         hRanges->SetBinContent(bin, ranges[i]);
     }
-    hRanges->SetFillColor(kGreen-9);
+    hRanges->SetFillColor(kGreen - 9);
     hRanges->Draw();
 
     TF1 *qFit2 = new TF1("qFit2", "pol3", yearMin, yearMax);
@@ -113,12 +114,14 @@ void newHistData() {
     TCanvas *c3 = new TCanvas("c3", "Yearly Data Histograms", 1200, 900);
     c3->cd();
 
-    TH1F *hAmplitudes = new TH1F("hAmplitudes", "Amplitudes over Years;Year;Amplitudes", nBins, yearMin - 0.5, yearMax + 0.5);
+    TH1F *hAmplitudes =
+        new TH1F("hAmplitudes", "Amplitudes over Years;Year;Amplitudes", nBins,
+                 yearMin - 0.5, yearMax + 0.5);
     for (size_t i = 0; i < years.size(); i++) {
         Int_t bin = hAmplitudes->FindBin(years[i]);
         hAmplitudes->SetBinContent(bin, amplitudes[i]);
     }
-    hAmplitudes->SetFillColor(kGreen-9);
+    hAmplitudes->SetFillColor(kGreen - 9);
     hAmplitudes->Draw();
 
     TF1 *qFit3 = new TF1("qFit2", "pol3", yearMin, yearMax);
@@ -137,6 +140,5 @@ void newHistData() {
 
     c3->Print("ROOT/c3.tex");
     c3->Print("ROOT/c3.png");
-   // f1->Close();
-
+    // f1->Close();
 }
