@@ -6,12 +6,9 @@ INCLUDES := -I include
 CXXFLAGS := $(CXXWARNINGS) -fPIC $(CXXSTD) $(CXXOPT) $(INCLUDES)
 LDFLAGS :=
 
-.PHONY: all clean run
+.PHONY: all clean
 
-all: AnnualData.so run
-
-run: AnnualData.so
-	root -l newHistData.C -q
+all: AnnualData.so
 
 AnnualData.so: src/AnnualData.o newHistData.o
 	$(CXX) $(CXXFLAGS) -shared -o $@ $^ $(LDFLAGS)
@@ -24,5 +21,3 @@ newHistData.o: newHistData.C
 
 clean:
 	rm -v src/AnnualData.o newHistData.o AnnualData.so
-
-	
