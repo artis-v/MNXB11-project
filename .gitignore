@@ -37,6 +37,9 @@ external/*
 # Contents of the build folder should not be in git
 build/*
 
+# Contents of the .vcsvode folder should not be in git
+.vscode/*
+
 # Resulting ROOT files should not be in git
 # However, we use the results folder to store the created plots
 # results/*

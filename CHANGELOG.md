@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Changed
+
+- Updated `.gitignore` to not include the `.vscode` folder.
+
+### Fixed
+
+- Updated the Changelog to show that `newHistData.C` was also changed in [2024.10.31].
+
 ## [2024.10.31_2] Artis Vijups, 23:30
 
 ### Changed
@@ -29,6 +39,7 @@ and this project adheres to [Calendar Versioning](https://calver.org/).
 
 ### Changed
 
+- Changed `newHistData.C` to reuse a function for each histogram.
 - Changed `rootLogon.C` to show titles.
 - Renamed the directory `ROOT` to `results`.
 - Updated `.gitignore` to retain `results`.
