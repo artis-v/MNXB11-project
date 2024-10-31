@@ -38,7 +38,8 @@ external/*
 build/*
 
 # Resulting ROOT files should not be in git
-results/*
+# However, we use the results folder to store the created plots
+# results/*
 
 # Don't add the argumentum library to git
 argumentum*
