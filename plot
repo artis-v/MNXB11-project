@@ -5,5 +5,8 @@ if [ "$#" -ne 2 ]; then
     exit 1
 fi
 
-rm -v results/*
+if [ "$(ls -A results)" ]; then
+    rm -v results/*
+fi
+
 root -l -q 'newHistData.C("'$1'", "'$2'")'
