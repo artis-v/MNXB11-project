@@ -3,14 +3,25 @@ All notable changes to this project will be documented in this file.
  
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Calendar Versioning](https://calver.org/).
- 
-## [2024.10.31_1] - Artis Vijups, 23:17
+
+## [2024.10.31_2] Artis Vijups, 23:30
+
+### Changed
+
+- Updated `AUTHORS`.
+
+### Removed
+
+- Removed the original ROOT graph script `plotData.C`.
+- Removed `include/Example.h` and `src/Example.cxx`.
+
+## [[2024.10.31_1]](https://github.com/artis-v/MNXB11-project/tree/6de9160bd31517a4fea3dd2e94009f695a47a464) Artis Vijups, 23:17
 
 ### Added
 
 - Added `CHANGELOG.md`.
 
-## [[2024.10.31]](https://github.com/artis-v/MNXB11-project/tree/41dd7c3053cd1a052bb0681bf8a84b2744d138aa) - Artis Vijups, 22:01
+## [[2024.10.31]](https://github.com/artis-v/MNXB11-project/tree/41dd7c3053cd1a052bb0681bf8a84b2744d138aa) Artis Vijups, 22:01
 
 ### Added
 
@@ -27,7 +38,7 @@ and this project adheres to [Calendar Versioning](https://calver.org/).
 
 - Canvas windows no longer flash while running the ROOT script.
 
-## [[2024.10.30_2]](https://github.com/artis-v/MNXB11-project/tree/b9dfa6635e07e83cb2dbf85721e69115bd0d6c4c) - Artis Vijups, 16:48
+## [[2024.10.30_2]](https://github.com/artis-v/MNXB11-project/tree/b9dfa6635e07e83cb2dbf85721e69115bd0d6c4c) Artis Vijups, 16:48
 
 ### Added
 
@@ -41,7 +52,7 @@ and this project adheres to [Calendar Versioning](https://calver.org/).
 
 - Added missing includes to the ROOT histogram script.
 
-## [[2024.10.30_1]](https://github.com/artis-v/MNXB11-project/tree/72478914250d3ee8e3ad600c1c016e870bfbaf25) - Sebastian Magnusson, 16:43
+## [[2024.10.30_1]](https://github.com/artis-v/MNXB11-project/tree/72478914250d3ee8e3ad600c1c016e870bfbaf25) Sebastian Magnusson, 16:43
 
 ### Added
 
