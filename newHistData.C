@@ -52,8 +52,8 @@ void drawHist(const std::vector<Int_t> &years, const std::vector<Int_t> &values,
     TLatex stats;
     stats.SetNDC();
     stats.SetTextSize(0.03);
-    stats.DrawLatex(0.75, 0.90, Form("Mean = %.2f", meanCounts));
-    stats.DrawLatex(0.75, 0.85, Form("Std Dev = %.2f", stdDevCounts));
+    stats.DrawLatex(0.80, 0.85, Form("Mean = %.2f", meanCounts));
+    stats.DrawLatex(0.80, 0.80, Form("#sigma = %.2f", stdDevCounts));
     c->Draw();
 
     // Write to files
@@ -115,20 +115,17 @@ void newHistData(const char *arg1, const char *arg2, const char *arg3,
              Form("\\text{Number of days between }"
                   "%.1f^{\\circ}C\\text{ and }"
                   "%.1f^{\\circ}C\\text{ by year in }"
-                  "%s \\text{ at }"
-                  "%s",
+                  "\\text{%s at %s}",
                   min, max, city.c_str(), arg4));
     drawHist(years, ranges, "range",
              Form("\\text{Longest streak of days between }"
                   "%.1f^{\\circ}C\\text{ and }"
                   "%.1f^{\\circ}C\\text{ by year in }"
-                  "%s \\text{ at }"
-                  "%s",
+                  "\\text{%s at %s}",
                   min, max, city.c_str(), arg4));
     drawHist(years, amplitudes, "amplitude",
              Form("\\text{Longest streak of days within a }"
                   "%.1f^{\\circ}C\\text{ range by year in }"
-                  "%s \\text{ at }"
-                  "%s",
+                  "\\text{%s at %s}",
                   max - min, city.c_str(), arg4));
 }
