@@ -6,9 +6,15 @@ and this project adheres to [Calendar Versioning](https://calver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Added cleaned data for more locations.
+- Added city and time to plot title.
+
 ### Changed
 
 - Clarified error messages.
+- Changed histogram formatting.
 
 ## [[2024.11.01]](https://github.com/artis-v/MNXB11-project/tree/af7b686f85648d2f3b45077ae40772ba39b5e1fe) Artis Vijups, 11:52
 
