@@ -16,7 +16,9 @@ log() {
 # Function to clean data in each file
 clean_data() {
     local INPUT_FILE=$1
-    local CLEANED_FILE="Cleaned_${INPUT_FILE}"
+    local CLEANED_FILE="${INPUT_FILE%.*}"
+    local CLEANED_FILE="${CLEANED_FILE##*_}_Data_Cleaned.csv"
+
     log "Cleaning data for file: $INPUT_FILE"
     
     # Identify the line number where data starts
