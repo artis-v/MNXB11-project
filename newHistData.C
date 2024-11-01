@@ -41,6 +41,10 @@ void drawHist(const std::vector<Int_t> &years, const std::vector<Int_t> &values,
     hCounts->SetFillColor(kGreen - 9);
     hCounts->Draw();
 
+    hCounts->GetYaxis()->SetNdivisions(510); 
+    hCounts->GetYaxis()->SetRangeUser(0, hCounts->GetMaximum() + 1);
+
+    
     // Add fit
     TF1 *qFit = new TF1("qFit", "pol3", years.front(), years.back());
     hCounts->Fit(qFit, "RQ");
