@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
-## [2024.11.01_1] Artis Vijups, Sebastian Magnusson, most recent version
+## [[2024.11.01_1]](https://github.com/artis-v/MNXB11-project/tree/90a77a384db78e495011cdb7c24d4964a7b2f830) Artis Vijups, Sebastian Magnusson, 14:24
 
 ### Added
 
