@@ -76,13 +76,13 @@ void newHistData(const char *arg1, const char *arg2, const char *arg3,
         min = std::stof(arg1);
         max = std::stof(arg2);
     } catch (...) {
-        std::cerr << "Error: Inputs must be numbers." << std::endl;
+        std::cerr << "Error: Temperature inputs must be numbers." << std::endl;
         return;
     }
 
     // Check order
     if (max < min) {
-        std::cerr << "Error: Lower temperature must be first." << std::endl;
+        std::cerr << "Error: Minimum temperature must be provided first." << std::endl;
         return;
     }
 

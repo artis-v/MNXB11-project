@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
-## [2024.11.01] Artis Vijups, 11:55
+## [Unreleased]
+
+### Changed
+
+- Clarified error messages.
+
+## [[2024.11.01]](https://github.com/artis-v/MNXB11-project/tree/af7b686f85648d2f3b45077ae40772ba39b5e1fe) Artis Vijups, 11:52
 
 ### Added
 
