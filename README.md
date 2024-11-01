@@ -25,6 +25,8 @@ The command then fills the folder with new plots. Each plot is stored as both a 
 
 If not specified, `<city>` is set to `Boras` and `<time>` is set to `18:00:00`. The variable `<city>` can be changed to anything so long as `datasets/<city>_Data_Cleaned.csv` exists.
 
+Check the `datasets` folder to see the provided cleaned data and instructions for adding more options.
+
 # Viewing the results
 
 By default, the `results` folder contains the plots created by running:
