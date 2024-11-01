@@ -16,8 +16,9 @@ To clean the data run
 ./data_cleaner.sh <data1.csv> <data2.csv> ...
 ```
 
-The "Boras_Data_Cleaned.csv" is the cleaned smhi data from the Borås station.
+Observe, the cleaner only works for the SMHI datasets since its based on their format.
 
+The "Boras_Data_Cleaned.csv" is the cleaned smhi data from the Borås station.
 
 
 The meteorological data used in this project has been downloaded from 
