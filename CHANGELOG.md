@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
-## [Unreleased] Artis Vijups
+## [2024.11.01] Artis Vijups, 11:55
+
+### Added
+
+- Added city and time specification by user.
 
 ### Changed
 
@@ -13,6 +17,7 @@ and this project adheres to [Calendar Versioning](https://calver.org/).
 ### Fixed
 
 - Updated the Changelog to show that `newHistData.C` was also changed in [2024.10.31].
+- Error handling for invalid inputs.
 
 ## [[2024.10.31_2]](https://github.com/artis-v/MNXB11-project/tree/43181cf620254dc2b900d884e4d2ed6a060c9754) Artis Vijups, 23:30
 

@@ -68,7 +68,8 @@ void drawHist(const std::vector<Int_t> &years, const std::vector<Int_t> &values,
     delete c;
 }
 
-void newHistData(const char *arg1, const char *arg2) {
+void newHistData(const char *arg1, const char *arg2, const char *arg3,
+                 const char *arg4) {
     // Check if the inputs are floats
     float min, max;
     try {
@@ -89,7 +90,7 @@ void newHistData(const char *arg1, const char *arg2) {
     gSystem->Load("AnnualData.so");
 
     // Get vectors using the class directly
-    AnnualData ad("datasets/Boras_Data_Cleaned.csv", "18:00:00");
+    AnnualData ad(arg3, arg4);
     std::vector<Int_t> years = ad.years();
     std::vector<Int_t> counts = ad.count(min, max);
     std::vector<Int_t> ranges = ad.range(min, max);

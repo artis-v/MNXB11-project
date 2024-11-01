@@ -20,13 +20,24 @@ AnnualData::AnnualData(string address, string time) {
         string cell;
         vector<string> cells;
         while (getline(ss, cell, ',')) cells.push_back(cell);
+        if (cells.size() < 3) {
+            throw std::runtime_error(
+                "All rows must have at least three columns.");
+        }
         // skip if time does not match
         if (cells[1] != time) continue;
         // push back year and temperature
-        int year = stoi(cells[0].substr(0, 4));
-        if (yrs.empty() || yrs.back() != year) yrs.push_back(year);
-        float temperature = stof(cells[2]);
-        data[year].push_back(temperature);
+        try {
+            int year = stoi(cells[0].substr(0, 4));
+            if (yrs.empty() || yrs.back() != year) yrs.push_back(year);
+            float temperature = stof(cells[2]);
+            data[year].push_back(temperature);
+        } catch (...) {
+            throw std::runtime_error("Unexpected error when converting data.");
+        }
+    }
+    if(data.empty()) {
+        throw std::runtime_error("No entries found for provided time.");
     }
     // close file
     f.close();
