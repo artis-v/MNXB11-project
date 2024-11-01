@@ -127,5 +127,5 @@ void newHistData(const char *arg1, const char *arg2, const char *arg3,
              Form("\\text{Longest streak of days within a }"
                   "%.1f^{\\circ}C\\text{ range by year in }"
                   "%s \\text{ at }"
-                  "%s", min-max, city.c_str(), arg4));
+                  "%s", max-min, city.c_str(), arg4));
 }
