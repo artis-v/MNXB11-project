@@ -4,12 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
-## [Unreleased]
+## [2024.11.01_1] Artis Vijups, Sebastian Magnusson, most recent version
 
 ### Added
 
 - Added cleaned data for more locations.
 - Added city and time to plot title.
+- Updated README with details on additional results.
 
 ### Changed
 

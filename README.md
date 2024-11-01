@@ -7,7 +7,7 @@ In this project, the user provides a minimum and maximum temperature that establ
 * Each year, what was the longest streak of days within the _**range**_?
 * Each year, what was the longest streak of days within a range of the same _**amplitude**_?
 
-We create a fit and determine the mean and standard deviation for each of these three results.
+We create a cubic polynomial fit and determine the mean and standard deviation for each of these three results.
 
 # Building the project
 
@@ -25,6 +25,14 @@ The command then fills the folder with new plots. Each plot is stored as both a 
 
 If not specified, `<city>` is set to `Boras` and `<time>` is set to `18:00:00`. The variable `<city>` can be changed to anything so long as `datasets/<city>_Data_Cleaned.csv` exists.
 
+# Viewing the results
+
 By default, the `results` folder contains the plots created by running:
 
 `./plot 16.6 18.1`
+
+Other hand-picked interesting results are:
+* `./plot -1.5 1.5` (see `range.png`),
+* `./plot -1 1 Visby 12:00:00` (see `range.png`),
+* `./plot -20 -10 Lulea` (see `count.png`),
+* `./plot 0 0.5 Lulea 00:00:00` (see `amplitude.png`).
