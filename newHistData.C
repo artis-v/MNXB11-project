@@ -114,15 +114,18 @@ void newHistData(const char *arg1, const char *arg2, const char *arg3,
     drawHist(years, counts, "count",
              Form("\\text{Number of days between }"
                   "%.1f^{\\circ}C\\text{ and }"
-                  "%.1f^{\\circ}C\\text{ by year}",
-                  min, max));
+                  "%.1f^{\\circ}C\\text{ by year in }"
+                  "%s \\text{ at }"
+                  "%s", min, max, city.c_str(), arg4));
     drawHist(years, ranges, "range",
              Form("\\text{Longest streak of days between }"
                   "%.1f^{\\circ}C\\text{ and }"
-                  "%.1f^{\\circ}C\\text{ by year}",
-                  min, max));
+                  "%.1f^{\\circ}C\\text{ by year in }"
+                  "%s \\text{ at }"
+                  "%s", min, max, city.c_str(), arg4));
     drawHist(years, amplitudes, "amplitude",
              Form("\\text{Longest streak of days within a }"
-                  "%.1f^{\\circ}C\\text{ range by year}",
-                  max - min));
+                  "%.1f^{\\circ}C\\text{ range by year in }"
+                  "%s \\text{ at }"
+                  "%s", min-max, city.c_str(), arg4));
 }
