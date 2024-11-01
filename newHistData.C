@@ -69,7 +69,7 @@ void drawHist(const std::vector<Int_t> &years, const std::vector<Int_t> &values,
 }
 
 void newHistData(const char *arg1, const char *arg2, const char *arg3,
-                 const char *arg4) {
+                 const char *arg4, const char *arg5) {
     // Check if the inputs are floats
     float min, max;
     try {
@@ -82,7 +82,8 @@ void newHistData(const char *arg1, const char *arg2, const char *arg3,
 
     // Check order
     if (max < min) {
-        std::cerr << "Error: Minimum temperature must be provided first." << std::endl;
+        std::cerr << "Error: Minimum temperature must be provided first."
+                  << std::endl;
         return;
     }
 
@@ -105,6 +106,9 @@ void newHistData(const char *arg1, const char *arg2, const char *arg3,
 
     // Never display canvas windows
     gROOT->SetBatch(kTRUE);
+
+    // Store city name
+    std::string city = arg5;
 
     // Draw histograms
     drawHist(years, counts, "count",

@@ -10,10 +10,12 @@ if [ "$(ls -A results)" ]; then
 fi
 
 CITY="datasets/Boras_Data_Cleaned.csv"
+CITYNAME="Boras"
 TIME="18:00:00"
 
 if [ "$#" -ge 3 ]; then
     CITY="datasets/"$3"_Data_Cleaned.csv"
+    CITYNAME=$3
 fi
 
 if ! [ -e $CITY ]; then
@@ -25,4 +27,4 @@ if [ "$#" -ge 4 ]; then
     TIME=$4
 fi
 
-root -l -q 'newHistData.C("'$1'", "'$2'", "'$CITY'", "'$TIME'")'
+root -l -q 'newHistData.C("'$1'", "'$2'", "'$CITY'", "'$TIME'", "'$CITYNAME'")'
