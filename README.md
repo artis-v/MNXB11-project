@@ -3,9 +3,9 @@
 # About
 
 In this project, the user provides a minimum and maximum temperature that establishes a range. Then, histograms are plotted summarizing three results:
-* Each year, what was the **count** of days in the range?
-* Each year, what was the longest streak of days within the **range**?
-* Each year, what was the longest streak of days within a range of the same **amplitude**?
+* Each year, what was the _**count**_ of days in the range?
+* Each year, what was the longest streak of days within the _**range**_?
+* Each year, what was the longest streak of days within a range of the same _**amplitude**_?
 
 We create a fit and determine the mean and standard deviation for each of these three results.
 
@@ -13,7 +13,7 @@ We create a fit and determine the mean and standard deviation for each of these 
 
 Write `make` to build the project.
 
-# Run the project
+# Running the project
 
 To run the project, run the `plot` BASH script by writing:
 
