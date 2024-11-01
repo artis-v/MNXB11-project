@@ -1,0 +1,164 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc} %All symbols included
+\usepackage[OT1]{fontenc} %Font
+\usepackage{amsmath,amsthm,amsfonts,amssymb,mathrsfs} %Math packages
+\usepackage{graphicx}
+\usepackage{blindtext}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{xcolor} % to access the named colour LightGray
+\usemintedstyle{monokai}
+\definecolor{bg}{HTML}{282828} % from https://github.com/kevinsawicki/monokai
+\usepackage{listings}
+\usepackage{float} 
+\usepackage{comment}
+\usepackage{xcolor}
+\usepackage{gensymb}
+\usepackage{bm}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{parskip}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\newcommand{\uvec}[1]{{\hat{\text{#1}}}}
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\usepackage[utf8]{inputenc}
+\renewcommand*\contentsname{Table of contents}
+\title{ 
+    MNXB11 \\
+    \line(1,0){300}\\
+    \huge{Final Project Report}\\
+    \line(1,0){300}}
+
+\author{Sebastian Magnusson, Artis Vijups}
+
+\date{\small{2024-11-01}}
+
+\begin{document}
+\maketitle
+\newpage
+\section{About the Project}
+
+In this project, the user provides a minimum and maximum temperature that establishes a range. Then, histograms are plotted summarizing three results:
+\begin{itemize}
+\item Each year, what was the {\textit{\textbf{count}}} of days in the range?
+\item Each year, what was the longest streak of days within the {\textit{\textbf{range}}}?
+\item Each year, what was the longest streak of days within a range of the same {\textit{\textbf{amplitude}}}?
+\end{itemize}
+
+We create a cubic polynomial fit and determine the mean and standard deviation for each of these three results.
+
+\subsection{Collaboration Policy}
+
+We used {\textit{policy B}} in this project: all members of the group were collaborators and pushed changes directly to the {\tt main} branch.
+
+We chose this policy because we had a small group (two people) and good communication through Discord, which made the commits more predictable.
+
+\section{Files, Classes, Methods}
+
+\subsection{Cleaning the Data}
+
+A bash script takes the users inputted files, cleans them, and returns a .csv file for each file. It works for files formatted in the standard SMHI format.
+
+The {\tt clean\_data()} function reads the input file, removes all unnecessary lines and outputs the columns of interest.   
+
+\subsection{C++ Class}
+
+A class called {\tt AnnualData}, written in C++, reads the file and the time the user wishes to consider, records the years that appear in the file and computes the necessary results.
+
+{\tt AnnualData::years()} is used to retrieve the vector containing the years.
+
+{\tt AnnualData::count(float low, float high)} returns a vector containing the number of days within the interval  {\tt [low, high]} for each year.
+
+{\tt AnnualData::range(float low, float high)} returns a vector containing the largest number of consecutive days within the interval {\tt [low, high]}.
+
+Finally, {\tt AnnualData::amplitude(float width)} returns a vector containing the largest number of consecutive days within an interval of amplitude {\tt width}.
+
+\subsection{ROOT Script}
+
+The ROOT script {\tt newHistData.C} performs analysis and visual representation of the annual temperature data. 
+
+The {\tt drawHist} function creates histograms of yearly temperature data using ROOT libraries and fits a polynomial curve to them.
+
+The main {\tt newHistData} function takes temperature range parameters and city information and then calls {\tt drawHist} to generate and save histograms.
+
+\subsection{Building and Running the Project}
+
+{\tt Makefile} is used to build the project by typing {\tt make}.
+
+{\tt plot} is a Bash script used to simplify running the program. The standard usage is: \begin{center}
+{\tt ./plot <min\_temperature> <max\_temperature> [<city> <time>]}
+\end{center}
+
+\subsection{Other Files}
+
+{\tt README.md} and {\tt datasets/README.md} contain instructions for building and running the project and for using the cleaning script, respectively.
+
+{\tt CHANGELOG.md} contains the versions of the project and the changes made.
+
+{\tt Workplan.md} contains the initial work plan for the project.
+
+{\tt rootlogon.C} provides formatting instructions that ROOT runs by default.
+
+{\tt .clang-format} defines the C++ formatting rules for the project.
+
+{\tt LICENSE} contains the used license and {\tt AUTHORS} lists the project creators.
+
+{\tt Report.pdf} contains this report as exported with Overleaf.
+
+\section{Some Interesting Results}
+
+In 1972, there was a 16-day long streak in Borås where the temperature was around $0^\circ C$ at 18:00:00.
+
+\begin{figure}[H]
+    \centering
+    \scalebox{.5}{\input{RangeBoras}}
+    \label{fig:enter-label}
+\end{figure}
+
+Similarly, in Visby, 1972 saw a long 17-day streak of around $0^\circ C$ at 12:00:00. 
+
+\begin{figure}[H]
+    \centering
+    \scalebox{.5}{\input{RangeVisby}}
+    \label{fig:enter-label}
+\end{figure}
+
+In Luleå, 2020 was an outlier with only 9 days between $-20^\circ C$ and $-10^\circ C$ at 18:00:00. All other years had at least 20 such days.
+
+\begin{figure}[H]
+    \centering
+    \scalebox{.5}{\input{CountLulea}}
+    \label{fig:enter-label}
+\end{figure}
+
+Also in Luleå, two consecutive years had a 7-day streak of temperatures within half-a-degree Celsius at midnight. No other years saw such a long streak of similar temperatures.
+
+\begin{figure}[H]
+    \centering
+    \scalebox{.5}{\input{AmplitudesLulea}}
+    \label{fig:enter-label}
+\end{figure}
+
+Finally, a histogram for Visby at 13:00:00 shows that this particular dataset had incomplete data for the provided time.
+
+\begin{figure}[H]
+    \centering
+    \scalebox{.5}{\input{AmplitudesVisby}}
+    \label{fig:enter-label}
+\end{figure}
+
+\section{Conclusion}
+
+The project's goals were achieved: the annual temperature data was analyzed by generating histograms that depict the count of days, streaks and amplitude variations within a given range.
+
+The created histograms revealed interesting patterns, such as notable streaks and outliers.
+
+\subsection{Possible Improvements}
+
+The main possible improvement is that an output text file could be provided, describing specifically when long streaks or other points of interest occur. As it stands, there is no way of knowing on which days these happen without scouring through the CSV files manually.
+
+\end{document}
+    
